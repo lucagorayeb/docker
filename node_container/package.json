@@ -1,0 +1,12 @@
+{
+  "name": "docker-node-server",
+  "version": "1.0.0",
+  "description": "Servidor Node simples para exercício Docker",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
