@@ -1,14 +1,14 @@
 FROM node:20
 
-WORKDIR /app
-
 COPY package*.json ./
+
+ENV APP_ENV=API
 
 RUN npm init -y
 
-COPY . .
+EXPOSE 3000 
 
-EXPOSE 3000
+COPY . . 
 
 CMD ["npm","run","dev"]
 

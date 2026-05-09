@@ -1,0 +1,55 @@
+                                                +----------------------------+
+                                                 |          Docker             |
+                                                +----------------------------+
+
+ Docker é um ambiente de isolamento médio. Mais especificamente, docker é um núcleo composto por várias ferramentas. Cada ferramenta tem sua função bem
+ definida.
+
+Docker CLI:
+    É onde o usuário interage com o docker, passando os comandos.
+    Os comandos não são executados de forma direta pelo docker.
+    São enviado atráves de uma API JSON para o dockerd.
+
+Dockerd ou Docker Daemon:
+    Esse é o cerébro do docker, gerencia todos os processos relacionados a
+    docker. Faz a chamada do containerd atráves de uma REST API.
+
+Containerd:
+    O containerd gerencia os processos dos containers e cria o sistema de
+    arquivo root em cada container.
+
+Containerd-shim:
+    É o processo que executa o container e gerencia a entrade e saída de dados.
+
+Runc:
+    Função que de fato cria o container, após a criação a função se encerra
+    e o container fica rodando no processo do containerd-shim.
+
+Kernel Linux:
+    É onde todo o isolamento é feito graças aos namespaces que separam o
+    container por PID, NET, MNT, IPC, UTS, USER. Os cgroups que gerenciam
+    o quanto de memoria, cpu, bloco de entrada e saída vai ser usado, e rede.
+
+
+$ docker run nginx
+|
+|--- Docker CLI
+| -> Sends REST API to /var/run/docker.sock
+|
+|---- Docker Daemon (dockerd)
+| -> Parses config, checks image, calls containerd
+|
+|---- containerd
+| -> Manages lifecycle, sets up filesystem
+|
+|---- containerd-shim
+| -> Keeps container alive, manages IO
+|
+|---- runc
+| ->Creates container via kernel syscalls (clone, mount, setns)
+|
+|---- Linux Kernel
+| -> Enforces isolation (namespaces, cgroups)
+|
+|---- Container
+→ A running isolated process

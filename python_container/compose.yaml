@@ -1,0 +1,12 @@
+services:
+  web:
+    build: .
+    ports:
+      - 8000:5000
+    restart: unless-stoped
+    # comportamentos: no, always, unless-stoped, on-failures:N (N é a quantidade de falhas)
+    depends_on:
+      - redis
+  redis:
+    image: redis
+    restart: unless-stoped

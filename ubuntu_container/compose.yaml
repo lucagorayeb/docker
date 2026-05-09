@@ -1,0 +1,7 @@
+services:
+  ubuntu:
+    build: .
+    volumes: 
+      - ./:/app 
+volumes:
+  app:

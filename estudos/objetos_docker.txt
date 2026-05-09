@@ -1,0 +1,18 @@
+Objetos do Docker
+
+Imagem:
+    Um imagem é um templete de instruções que o docker segue para
+    criar um container. As imagens são baseadas em outras imagens já
+    existentes,  mas cada uma tem seus detalhes. Cada usuário pode criar
+    a própria imagem a partir de um arquivo chamado Dorckerfile que são
+    instruções simples que o docker segue para fazer o build da imagem.
+    Se o Dockerfile for alterado eu rebecer outro comando de build ele
+    apenas builda o que foi adicionado, pois o que garante o sistema do
+    docker ser rápido e leve é a memória da cache que ele possui.
+
+Container:
+    Um container é uma instância executavel da imagem. Se passar o comando
+    de criação de uma container o docker vai verificar se existe essa imagem
+    localmente, se ele não encontrar, vai procurar no dockerhub, se não achar
+    vai exibir uma mensagem de erro. Quando a imagem é encontrar o container é
+    criado e configurado.
